@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
 project(15_dynamic_programming)
 
-add_executable(main cpp/main.cpp)
-target_link_libraries(main PRIVATE common)
-target_include_directories(main PRIVATE ../common)
+# Main executable
+add_executable(15_dynamic_programming_main cpp/main.cpp)
+target_link_libraries(15_dynamic_programming_main PRIVATE common)
+target_include_directories(15_dynamic_programming_main PRIVATE ../common)
 
-add_executable(exercise exercises/exercise.cpp)
-target_link_libraries(exercise PRIVATE common)
-target_include_directories(exercise PRIVATE ../common)
+# Exercise executable
+add_executable(15_dynamic_programming_exercise exercises/exercise.cpp)
+target_link_libraries(15_dynamic_programming_exercise PRIVATE common)
+target_include_directories(15_dynamic_programming_exercise PRIVATE ../common)
