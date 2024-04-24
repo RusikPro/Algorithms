@@ -1,3 +1,5 @@
+#include "timer.h"
+
 #include <cmath>
 #include <iostream>
 #include <limits>
@@ -30,8 +32,24 @@ int cutRod ( Elements const & _p, int _n )
 void testCutRod ()
 {
     Elements prices = { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+
     auto maximumPrice = cutRod( prices, 10 );
     std::cout << "Maximum price: " << maximumPrice << std::endl;
+
+    {
+        Timer<> t( "cutRod( prices, 10 )" );
+        cutRod( prices, 10 );
+    }
+
+    {
+        Timer<> t( "cutRod( prices, 20 )" );
+        cutRod( prices, 20 );
+    }
+
+    {
+        Timer< std::milli > t( "cutRod( prices, 30 )" );
+        cutRod( prices, 30 );
+    }
 }
 
 /*----------------------------------------------------------------------------*/
