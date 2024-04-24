@@ -1,31 +1,8 @@
+#include "1_cut_rod.h"
+
 #include "timer.h"
 
-#include <cmath>
 #include <iostream>
-#include <limits>
-#include <vector>
-
-/*----------------------------------------------------------------------------*/
-
-using Elements = std::vector< int >;
-static constexpr int MINIMUM = std::numeric_limits< int >::min();
-
-/*----------------------------------------------------------------------------*/
-
-int cutRod ( Elements const & _p, int _n )
-{
-    if ( _n == 0 )
-    {
-        return 0;
-    }
-
-    int q = MINIMUM;
-    for ( int i = 0; i < _n; ++i )
-    {
-        q = std::max( q, _p[ i ] + cutRod( _p, _n - i - 1 ) );
-    }
-    return q;
-}
 
 /*----------------------------------------------------------------------------*/
 
@@ -47,14 +24,20 @@ void testCutRod ()
     }
 
     {
-        Timer< std::milli > t( "cutRod( prices, 30 )" );
-        cutRod( prices, 30 );
+        Timer< std::milli > t( "cutRod( prices, 25 )" );
+        cutRod( prices, 25 );
+    }
+
+    {
+        Timer< std::milli > t( "cutRod( prices, 26 )" );
+        cutRod( prices, 26 );
     }
 }
 
 /*----------------------------------------------------------------------------*/
 
-int main () {
+int main ()
+{
     testCutRod();
     return 0;
 }
