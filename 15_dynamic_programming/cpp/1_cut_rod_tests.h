@@ -7,64 +7,73 @@
 
 #include "timer.h"
 
+#include <functional>
 #include <iostream>
 
 /*----------------------------------------------------------------------------*/
 
+Elements p = { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
 
-void testCutRod ()
+/*----------------------------------------------------------------------------*/
+
+// Data from book
+void validationTest ( std::function< int( Elements const &, int ) > _f )
 {
-    Elements prices = { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
-
-    auto maximumPrice = cutRod( prices, 5 );
-    std::cout << "Maximum price: " << maximumPrice << std::endl;
-
+    for ( int i = 0; i < 10; ++i )
     {
-        Timer<> t( "cutRod( prices, 10 )" );
-        cutRod( prices, 10 );
-    }
-
-    {
-        Timer<> t( "cutRod( prices, 20 )" );
-        cutRod( prices, 20 );
-    }
-
-    {
-        Timer< std::milli > t( "cutRod( prices, 25 )" );
-        cutRod( prices, 25 );
-    }
-
-    {
-        Timer< std::milli > t( "cutRod( prices, 26 )" );
-        cutRod( prices, 26 );
+        std::cout << "Maximum price (" << i + 1 << "): " <<
+            _f( p, i + 1 ) << std::endl
+        ;
     }
 }
 
 /*----------------------------------------------------------------------------*/
 
-void testCutRodMemoization ()
+void testCutRod ()
 {
-    Elements prices = { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+    std::cout << "cutRod" << std::endl;
+    validationTest( cutRod );
+}
 
-    auto maximumPrice = memoizedCutRod( prices, 4 );
-    std::cout << "Maximum price: " << maximumPrice << std::endl;
+/*----------------------------------------------------------------------------*/
+
+void testMemoizationCutRod ()
+{
+    std::cout << "memoizedCutRod" << std::endl;
+    validationTest( memoizedCutRod );
+}
+
+/*----------------------------------------------------------------------------*/
+
+void testBottomUpCutRod ()
+{
+    std::cout << "bottomUpCutRod" << std::endl;
+    validationTest( bottomUpCutRod );
+}
+
+/*----------------------------------------------------------------------------*/
+
+void benchmarkTestMilli (
+        std::string const & _title
+    ,   std::function< int( Elements const &, int ) > _f
+    ,   int _n
+)
+{
+    {
+        Timer< std::milli > t( _title );
+        _f( p, _n );
+    }
 }
 
 /*----------------------------------------------------------------------------*/
 
 void comparePerformances ()
 {
-    Elements prices = { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+    benchmarkTestMilli( "cutRod( p, 26 )", cutRod, 26 );
 
-    {
-        Timer< std::milli > t( "cutRod( prices, 26 )" );
-        cutRod( prices, 26 );
-    }
+    benchmarkTestMilli( "memoizedCutRod( p, 26 )", memoizedCutRod, 26 );
 
-    {
-        Timer< std::milli > t( "memoizedCutRod( prices, 26 )" );
-        memoizedCutRod( prices, 26 );
-    }
+    benchmarkTestMilli( "bottomUpCutRod( p, 26 )", bottomUpCutRod, 26 );
 }
 
 /*----------------------------------------------------------------------------*/

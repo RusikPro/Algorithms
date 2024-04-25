@@ -5,7 +5,8 @@
 int main ()
 {
     // testCutRod();
-    testCutRodMemoization();
-    // comparePerformances();
+    // testCutRodMemoization();
+    // testBottomUpCutRod();
+    comparePerformances();
     return 0;
 }

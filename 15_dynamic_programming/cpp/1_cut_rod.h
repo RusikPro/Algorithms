@@ -74,4 +74,28 @@ int memoizedCutRod ( Elements const & _p, int _n )
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 
+// Bottom-up method
+
+int bottomUpCutRod ( Elements const & _p, int _n )
+{
+    // Elements r;
+    // r.reserve( _n );
+    // r.push_back( 0 );
+    Elements r( _n + 1, 0 );
+    r[ 0 ] = 0;
+
+    for ( int j = 1; j <= _n; ++j )
+    {
+        int q = MINIMUM;
+        for ( int i = 1; i <= j; ++i )
+        {
+            q = std::max( q, _p[ i - 1 ] + r[ j - i ] );
+        }
+        r[ j ] = q;
+    }
+    return r[ _n ];
+}
+
+/*----------------------------------------------------------------------------*/
+
 #endif // __15_DYNAMIC_PROGRAMMING_CPP_1_CUT_ROD_H__
