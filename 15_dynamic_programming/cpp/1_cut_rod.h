@@ -31,6 +31,7 @@ int cutRod ( Elements const & _p, int _n )
 }
 
 /*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 // Top-down with memoization
 
@@ -61,18 +62,16 @@ int memoizedCutRodAux ( Elements const & _p, int _n, Elements & _r )
     return q;
 }
 
+/*----------------------------------------------------------------------------*/
+
 int memoizedCutRod ( Elements const & _p, int _n )
 {
-    Elements r;
-    r.reserve( _n  + 1);
-    for ( int i = 0; i < _n + 1; ++i )
-    {
-        r.push_back( MINIMUM );
-    }
+    Elements r( _n + 1, MINIMUM );
 
     return memoizedCutRodAux( _p, _n, r );
 }
 
+/*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 
 #endif // __15_DYNAMIC_PROGRAMMING_CPP_1_CUT_ROD_H__
