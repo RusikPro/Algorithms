@@ -55,11 +55,12 @@ void testBottomUpCutRod ()
 
 void testExtendedBottomUpCutRod ()
 {
-    int n = 7;
+    int n = 4;
     std::cout << "extendedBottomUpCutRod, n = " << n << std::endl;
 
     auto [ price, pieces ] = extendedBottomUpCutRod( p, n );
 
+    std::cout << "Price: " << price << std::endl;
     for ( ; n > 0; n = n - pieces[ n - 1 ] )
     {
         std::cout << pieces[ n - 1 ] << ' ';
@@ -90,6 +91,27 @@ void comparePerformances ()
     benchmarkTestMilli( "memoizedCutRod( p, 26 )", memoizedCutRod, 26 );
 
     benchmarkTestMilli( "bottomUpCutRod( p, 26 )", bottomUpCutRod, 26 );
+}
+
+/*----------------------------------------------------------------------------*/
+
+// Exercise 15.1-3
+void testExtendedBottomUpCutRodWithCost ()
+{
+    static constexpr int n = 7;
+    static constexpr int c = 1;
+    std::cout << "extendedBottomUpCutRodWithCost, n = " << n
+        << " c = " << c << std::endl
+    ;
+
+    auto [ price, pieces ] = extendedBottomUpCutRodWithCost( p, n, c );
+
+    std::cout << "Price: " << price << std::endl;
+    for ( auto const & piece: pieces )
+    {
+        std::cout << piece << ' ';
+    }
+    std::cout << std::endl;
 }
 
 /*----------------------------------------------------------------------------*/

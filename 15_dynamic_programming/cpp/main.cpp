@@ -7,7 +7,10 @@ int main ()
     // testCutRod();
     // testCutRodMemoization();
     // testBottomUpCutRod();
-    testExtendedBottomUpCutRod();
+    // testExtendedBottomUpCutRod();
     // comparePerformances();
+
+
+    testExtendedBottomUpCutRodWithCost();
     return 0;
 }
