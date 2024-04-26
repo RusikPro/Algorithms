@@ -7,6 +7,7 @@ int main ()
     // testCutRod();
     // testCutRodMemoization();
     // testBottomUpCutRod();
-    comparePerformances();
+    testExtendedBottomUpCutRod();
+    // comparePerformances();
     return 0;
 }

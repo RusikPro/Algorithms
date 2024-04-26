@@ -53,6 +53,22 @@ void testBottomUpCutRod ()
 
 /*----------------------------------------------------------------------------*/
 
+void testExtendedBottomUpCutRod ()
+{
+    int n = 7;
+    std::cout << "extendedBottomUpCutRod, n = " << n << std::endl;
+
+    auto [ price, pieces ] = extendedBottomUpCutRod( p, n );
+
+    for ( ; n > 0; n = n - pieces[ n - 1 ] )
+    {
+        std::cout << pieces[ n - 1 ] << ' ';
+    }
+    std::cout << std::endl;
+}
+
+/*----------------------------------------------------------------------------*/
+
 void benchmarkTestMilli (
         std::string const & _title
     ,   std::function< int( Elements const &, int ) > _f

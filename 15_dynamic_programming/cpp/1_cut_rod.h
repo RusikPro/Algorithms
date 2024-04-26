@@ -78,9 +78,6 @@ int memoizedCutRod ( Elements const & _p, int _n )
 
 int bottomUpCutRod ( Elements const & _p, int _n )
 {
-    // Elements r;
-    // r.reserve( _n );
-    // r.push_back( 0 );
     Elements r( _n + 1, 0 );
     r[ 0 ] = 0;
 
@@ -94,6 +91,32 @@ int bottomUpCutRod ( Elements const & _p, int _n )
         r[ j ] = q;
     }
     return r[ _n ];
+}
+
+/*----------------------------------------------------------------------------*/
+
+std::pair< int, Elements > extendedBottomUpCutRod ( Elements const & _p, int _n )
+{
+    Elements r( _n + 1, 0 );
+    r[ 0 ] = 0;
+
+    Elements s( _n, 0 );
+
+    for ( int j = 1; j <= _n; ++j )
+    {
+        int q = MINIMUM;
+        for ( int i = 1; i <= j; ++i )
+        {
+            // q = std::max( q, _p[ i - 1 ] + r[ j - i ] );
+            if ( q < _p[ i - 1 ] + r[ j - i ] )
+            {
+                q = _p[ i - 1 ] + r[ j - i ];
+                s[ j - 1 ] = i;
+            }
+        }
+        r[ j ] = q;
+    }
+    return { r[ _n ], s };
 }
 
 /*----------------------------------------------------------------------------*/
