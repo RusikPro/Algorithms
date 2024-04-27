@@ -8,7 +8,9 @@ int main ()
 {
     // testExtendedBottomUpCutRodWithCost();
     // testExtendedMemoizedCutRod();
-    testFibonacciValue();
+    // testFibonacciValue();
+    // testFibonacciValueRecurrence();
+    compareFibPerformances();
 
     return 0;
 }

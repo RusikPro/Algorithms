@@ -5,6 +5,9 @@
 
 #include "1_cut_rod_exercises.h"
 
+#include "timer.h"
+
+#include <functional>
 #include <iostream>
 
 /*----------------------------------------------------------------------------*/
@@ -55,12 +58,49 @@ void testExtendedMemoizedCutRod ()
 // Exercise 15.1-5
 void testFibonacciValue ()
 {
-    int n = 6;
+    int n = 14;
     std::cout << "testFibonacciValue, n = " << n << std::endl;
 
     auto value = fibonacciValue( n );
 
     std::cout << "Value in sequence: " << value << std::endl;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void testFibonacciValueRecurrence ()
+{
+    int n = 14;
+    std::cout << "testFibonacciValueRecurrence, n = " << n << std::endl;
+
+    auto value = fibonacciValueRecurrence( n );
+
+    std::cout << "Value in sequence: " << value << std::endl;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void benchmarkFib (
+        std::string const & _title
+    ,   std::function< int( int ) > _f
+    ,   int _n
+)
+{
+    {
+        Timer< std::milli > t( _title );
+        _f( _n );
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+
+void compareFibPerformances ()
+{
+    int n = 40;
+    std::cout << "comparePerformances, n = " << n << std::endl;
+    benchmarkFib( "fibonacciValue", fibonacciValue, n );
+
+    benchmarkFib( "fibonacciValueRecurrence", fibonacciValueRecurrence, n );
 }
 
 /*----------------------------------------------------------------------------*/

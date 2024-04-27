@@ -123,7 +123,7 @@ int fibonacciValue ( int _number )
     {
         return 0;
     }
-    else if ( _number == 1 || _number == 2 )
+    else if ( _number <= 2 )
     {
         return 1;
     }
@@ -137,6 +137,24 @@ int fibonacciValue ( int _number )
     }
 
     return fib[ _number - 1 ];
+}
+
+/*----------------------------------------------------------------------------*/
+
+int fibonacciValueRecurrence ( int _number )
+{
+    if ( _number < 1 )
+    {
+        return 0;
+    }
+    else if ( _number <= 2 )
+    {
+        return 1;
+    }
+
+    return      fibonacciValueRecurrence( _number - 1 )
+            +   fibonacciValueRecurrence( _number - 2 )
+    ;
 }
 
 /*----------------------------------------------------------------------------*/
