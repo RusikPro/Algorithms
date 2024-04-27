@@ -116,4 +116,29 @@ extendedMemoizedCutRod ( Elements const & _p, int _n )
 
 /*----------------------------------------------------------------------------*/
 
+// Exercise 15.1-5
+int fibonacciValue ( int _number )
+{
+    if ( _number < 1 )
+    {
+        return 0;
+    }
+    else if ( _number == 1 || _number == 2 )
+    {
+        return 1;
+    }
+
+    Elements fib( _number, 1 );
+    fib[ 1 ] = 1;
+
+    for ( int i = 2; i < _number; ++i )
+    {
+        fib[ i ] = fib[ i - 1 ] + fib[ i - 2 ];
+    }
+
+    return fib[ _number - 1 ];
+}
+
+/*----------------------------------------------------------------------------*/
+
 #endif // __15_DYNAMIC_PROGRAMMING_CPP_EXERCISES_1_CUT_ROD_EXERCISES_H__

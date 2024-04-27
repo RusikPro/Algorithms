@@ -52,4 +52,17 @@ void testExtendedMemoizedCutRod ()
 
 /*----------------------------------------------------------------------------*/
 
+// Exercise 15.1-5
+void testFibonacciValue ()
+{
+    int n = 6;
+    std::cout << "testFibonacciValue, n = " << n << std::endl;
+
+    auto value = fibonacciValue( n );
+
+    std::cout << "Value in sequence: " << value << std::endl;
+}
+
+/*----------------------------------------------------------------------------*/
+
 #endif // __15_DYNAMIC_PROGRAMMING_CPP_EXERCISES_1_CUT_ROD_EXERCISES_TESTS_H__

@@ -7,7 +7,8 @@
 int main ()
 {
     // testExtendedBottomUpCutRodWithCost();
-    testExtendedMemoizedCutRod();
+    // testExtendedMemoizedCutRod();
+    testFibonacciValue();
 
     return 0;
 }
