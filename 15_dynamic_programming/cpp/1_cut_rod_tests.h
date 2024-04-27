@@ -95,25 +95,4 @@ void comparePerformances ()
 
 /*----------------------------------------------------------------------------*/
 
-// Exercise 15.1-3
-void testExtendedBottomUpCutRodWithCost ()
-{
-    static constexpr int n = 7;
-    static constexpr int c = 1;
-    std::cout << "extendedBottomUpCutRodWithCost, n = " << n
-        << " c = " << c << std::endl
-    ;
-
-    auto [ price, pieces ] = extendedBottomUpCutRodWithCost( p, n, c );
-
-    std::cout << "Price: " << price << std::endl;
-    for ( auto const & piece: pieces )
-    {
-        std::cout << piece << ' ';
-    }
-    std::cout << std::endl;
-}
-
-/*----------------------------------------------------------------------------*/
-
 #endif // __15_DYNAMIC_PROGRAMMING_CPP_1_CUT_ROD_TESTS_H__
