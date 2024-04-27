@@ -48,12 +48,6 @@ void testExtendedMemoizedCutRod ()
         std::cout << piece << ' ';
     }
     std::cout << std::endl;
-
-    for ( ; n > 0; n = n - pieces[ n ] )
-    {
-        std::cout << pieces[ n ] << ' ';
-    }
-    std::cout << std::endl;
 }
 
 /*----------------------------------------------------------------------------*/

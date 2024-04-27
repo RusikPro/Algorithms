@@ -105,7 +105,13 @@ extendedMemoizedCutRod ( Elements const & _p, int _n )
     Elements s( _n + 1, 0 );
 
     auto price = extendedMemoizedCutRodAux( _p, _n, r, s );
-    return { price, s };
+
+    Elements finalPieces;
+    for ( int n = _n ; n > 0; n = n - s[ n ] )
+    {
+        finalPieces.push_back( s[ n ] );
+    }
+    return { price, finalPieces };
 }
 
 /*----------------------------------------------------------------------------*/
