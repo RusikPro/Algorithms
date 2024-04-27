@@ -6,7 +6,8 @@
 
 int main ()
 {
-    testExtendedBottomUpCutRodWithCost();
+    // testExtendedBottomUpCutRodWithCost();
+    testExtendedMemoizedCutRod();
 
     return 0;
 }

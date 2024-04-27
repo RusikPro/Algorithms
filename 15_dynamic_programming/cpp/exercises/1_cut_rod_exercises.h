@@ -3,6 +3,8 @@
 
 /*----------------------------------------------------------------------------*/
 
+#include "constants.h"
+
 #include <cmath>
 #include <vector>
 
@@ -53,6 +55,57 @@ extendedBottomUpCutRodWithCost ( Elements const & _p, int _n, int _c )
         finalPieces.push_back( pieces[ n - 1 ] );
     }
     return { price, finalPieces };
+}
+
+/*----------------------------------------------------------------------------*/
+
+// Exercise 15.1-4
+int extendedMemoizedCutRodAux (
+        Elements const & _p
+    ,   int _n
+    ,   Elements & _r
+    ,   Elements & _s
+)
+{
+    if ( _r[ _n ] >= 0 )
+    {
+        return _r[ _n ];
+    }
+
+    int q = MINIMUM;
+
+    if ( _n == 0 )
+    {
+        q = 0;
+    }
+    else
+    {
+        for ( int i = 0; i < _n; ++i )
+        {
+            auto result = extendedMemoizedCutRodAux( _p, _n - i - 1, _r, _s );
+            if ( q < _p[ i ] + result )
+            {
+                q = _p[ i ] + result;
+
+                _s[ _n ] = i + 1;
+            }
+        }
+    }
+    _r[ _n ] = q;
+
+    return q;
+}
+
+/*----------------------------------------------------------------------------*/
+
+std::pair< int, Elements >
+extendedMemoizedCutRod ( Elements const & _p, int _n )
+{
+    Elements r( _n + 1, MINIMUM );
+    Elements s( _n + 1, 0 );
+
+    auto price = extendedMemoizedCutRodAux( _p, _n, r, s );
+    return { price, s };
 }
 
 /*----------------------------------------------------------------------------*/
