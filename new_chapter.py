@@ -6,7 +6,7 @@ def create_chapter_folder(chapter_name):
     base_path = chapter_name
 
     # Subdirectories
-    subdirs = ['cpp', 'py', 'exercises']
+    subdirs = ['cpp', 'py']
 
     # Create base chapter directory and subdirectories
     os.makedirs(base_path, exist_ok=True)
@@ -27,10 +27,10 @@ add_executable({normalized_chapter_name}_main cpp/main.cpp)
 target_link_libraries({normalized_chapter_name}_main PRIVATE common)
 target_include_directories({normalized_chapter_name}_main PRIVATE ../common)
 
-# Exercise executable
-add_executable({normalized_chapter_name}_exercise exercises/exercise.cpp)
-target_link_libraries({normalized_chapter_name}_exercise PRIVATE common)
-target_include_directories({normalized_chapter_name}_exercise PRIVATE ../common)
+# Exercises executable
+add_executable({normalized_chapter_name}_exercises cpp/exercises.cpp)
+target_link_libraries({normalized_chapter_name}_exercises PRIVATE common)
+target_include_directories({normalized_chapter_name}_exercises PRIVATE ../common)
 """)
 
     # Create a placeholder C++ main file
@@ -38,7 +38,8 @@ target_include_directories({normalized_chapter_name}_exercise PRIVATE ../common)
     with open(main_cpp_path, 'w') as main_cpp:
         main_cpp.write("""#include <iostream>
 
-int main () {{
+int main ()
+{{
     std::cout << "Hello from main in {}" << std::endl;
     return 0;
 }}
@@ -57,12 +58,13 @@ if __name__ == "__main__":
 """)
 
     # Create a placeholder C++ exercise file
-    exercise_cpp_path = os.path.join(base_path, 'exercises', 'exercise.cpp')
+    exercise_cpp_path = os.path.join(base_path, 'cpp', 'exercises.cpp')
     with open(exercise_cpp_path, 'w') as exercise_cpp:
         exercise_cpp.write("""#include <iostream>
 
-int main () {{
-    std::cout << "Exercise for {}" << std::endl;
+int main ()
+{{
+    std::cout << "Exercises for {}" << std::endl;
     return 0;
 }}
 """.format(chapter_name))
