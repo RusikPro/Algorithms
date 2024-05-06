@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.10)
+project(22_elementary_graph_algorithms)
+
+# Main executable
+add_executable(22_elementary_graph_algorithms_main cpp/main.cpp)
+target_link_libraries(22_elementary_graph_algorithms_main PRIVATE common)
+target_include_directories(22_elementary_graph_algorithms_main PRIVATE ../common)
+
+# Exercises executable
+add_executable(22_elementary_graph_algorithms_exercises cpp/exercises.cpp)
+target_link_libraries(22_elementary_graph_algorithms_exercises PRIVATE common)
+target_include_directories(22_elementary_graph_algorithms_exercises PRIVATE ../common)
