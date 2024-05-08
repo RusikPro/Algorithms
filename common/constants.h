@@ -8,6 +8,7 @@
 /*----------------------------------------------------------------------------*/
 
 static constexpr int MINIMUM = std::numeric_limits< int >::min();
+static constexpr int MAXIMUM = std::numeric_limits< int >::max();
 
 /*----------------------------------------------------------------------------*/
 

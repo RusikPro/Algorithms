@@ -10,7 +10,7 @@
 
 /*----------------------------------------------------------------------------*/
 
-enum class Colour
+enum class Color
 {
     White,
     Gray,
@@ -22,8 +22,8 @@ enum class Colour
 struct Node
 {
     std::list< Node * > adjacencyList;
-    Colour colour;
-    int distance;
+    Color color;
+    int distance = MAXIMUM;
     Node * pPredecessor = nullptr;
     char c;
 };
