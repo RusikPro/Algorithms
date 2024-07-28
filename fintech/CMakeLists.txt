@@ -20,7 +20,7 @@ target_include_directories(fintech_circular_trade_processor PRIVATE ../common)
 
 # Trade processor
 add_executable(
-    fintech_trade_processor_test cpp/trade_processor_test.cpp
+    fintech_circular_bucket_queue_test cpp/circular_bucket_queue_test.cpp
 )
-target_link_libraries(fintech_trade_processor_test PRIVATE common)
-target_include_directories(fintech_trade_processor_test PRIVATE ../common)
+target_link_libraries(fintech_circular_bucket_queue_test PRIVATE common)
+target_include_directories(fintech_circular_bucket_queue_test PRIVATE ../common)

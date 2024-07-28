@@ -14,7 +14,7 @@ using namespace std::chrono;
 
 // Concept to check if a class has a timestamp and < operator
 template < typename _T >
-concept TradeConcept = requires ( _T _a, _T _b )
+concept TimedElement = requires ( _T _a, _T _b )
 {
     { _a.timestamp } -> std::convertible_to< time_point< steady_clock > >;
     { _a < _b } -> std::convertible_to< bool >;
@@ -22,13 +22,13 @@ concept TradeConcept = requires ( _T _a, _T _b )
 
 /*----------------------------------------------------------------------------*/
 
-// Generic TradeProcessor class
-template < TradeConcept _TradeType >
-class TradeProcessor
+// Generic CircularBucketQueue class
+template < TimedElement _ElementType >
+class CircularBucketQueue
 {
 
 private:
-    std::vector< std::set< _TradeType > > m_buckets;
+    std::vector< std::set< _ElementType > > m_buckets;
     int m_currentBucket;
     time_point< steady_clock > m_startTime;
     int m_numSeconds;
@@ -42,7 +42,7 @@ private:
     }
 
 public:
-    TradeProcessor ( int _numSeconds = 10 )
+    CircularBucketQueue ( int _numSeconds = 10 )
         :   m_buckets( _numSeconds )
         ,   m_currentBucket( 0 )
         ,   m_startTime( steady_clock::now() )
@@ -50,7 +50,7 @@ public:
     {
     }
 
-    void store ( _TradeType const & trade )
+    void store ( _ElementType const & trade )
     {
         auto now = steady_clock::now();
         auto bucketIndex = getBucketIndex( now );
@@ -74,10 +74,10 @@ public:
         m_buckets[ bucketIndex ].insert( trade );
     }
 
-    std::vector< _TradeType > getRecentTrades ()
+    std::vector< _ElementType > getRecentTrades ()
     {
         auto now = steady_clock::now();
-        std::vector< _TradeType > recentTrades;
+        std::vector< _ElementType > recentTrades;
 
         for ( int i = 0; i < m_numSeconds; ++i )
         {
@@ -98,7 +98,7 @@ public:
         std::sort(
                 recentTrades.begin()
             ,   recentTrades.end()
-            ,   [] ( _TradeType const & _a, _TradeType const & _b )
+            ,   [] ( _ElementType const & _a, _ElementType const & _b )
                 {
                     return _b.timestamp < _a.timestamp; // Newest first
                 }

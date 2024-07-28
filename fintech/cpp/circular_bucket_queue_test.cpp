@@ -1,4 +1,4 @@
-#include "trade_processor.hpp"
+#include "circular_bucket_queue.hpp"
 
 #include <iostream>
 
@@ -23,7 +23,7 @@ struct Trade
 
 /*----------------------------------------------------------------------------*/
 
-void simulateTrades ( TradeProcessor< Trade > & _tp )
+void simulateTrades ( CircularBucketQueue< Trade > & _tp )
 {
     // Simulate storing trades at different intervals
     _tp.store( Trade( 100 ) ); // Trade at t = 0s
@@ -37,7 +37,7 @@ void simulateTrades ( TradeProcessor< Trade > & _tp )
     _tp.store( Trade( 500 ) ); // Trade at t = 11s
 }
 
-void printRecentTrades ( TradeProcessor< Trade > & _tp )
+void printRecentTrades ( CircularBucketQueue< Trade > & _tp )
 {
     auto recentTrades = _tp.getRecentTrades();
     std::cout << "Recent trades (last 10 seconds):" << std::endl;
@@ -58,7 +58,7 @@ void printRecentTrades ( TradeProcessor< Trade > & _tp )
 
 int main()
 {
-    TradeProcessor< Trade > tp;
+    CircularBucketQueue< Trade > tp;
 
     simulateTrades( tp );
 
