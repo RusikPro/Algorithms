@@ -24,3 +24,4 @@ add_executable(
 )
 target_link_libraries(fintech_circular_bucket_queue_test PRIVATE common)
 target_include_directories(fintech_circular_bucket_queue_test PRIVATE ../common)
+
