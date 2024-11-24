@@ -25,3 +25,9 @@ add_executable(
 target_link_libraries(fintech_circular_bucket_queue_test PRIVATE common)
 target_include_directories(fintech_circular_bucket_queue_test PRIVATE ../common)
 
+# Market Making
+add_executable(
+    fintech_market_making cpp/market_making.cpp
+)
+target_link_libraries(fintech_market_making PRIVATE common)
+target_include_directories(fintech_market_making PRIVATE ../common)
