@@ -28,16 +28,33 @@ def build_and_run(source_relative_path):
     # Extract chapter name and file name from the source_relative_path
     path_parts = source_relative_path.split('/')
     if len(path_parts) < 3:
-        print("Invalid path provided. Please use the format <chapter_folder>/cpp|exercises/<filename>")
+        print("Invalid path provided. Please use the format <chapter_folder>/cpp/exercises/<filename>")
         return
 
     chapter_name = path_parts[0].replace('_', ' ').title().replace(' ', '_')
-    file_name = path_parts[2]
+    file_name = path_parts[-1]
     executable_name = os.path.splitext(file_name)[0]  # Remove extension from file name
     executable_full_name = f"{chapter_name.lower()}_{executable_name}"
 
     # Construct the path to the executable
     executable_full_path = os.path.join(build_dir, chapter_name, executable_full_name)
+
+
+    # Construct the path to the executable
+    executable_full_path = os.path.join(build_dir, chapter_name, executable_name)
+
+    # chapter_name = path_parts[0].replace('_', ' ').title().replace(' ', '_')
+    # file_name = path_parts[-1]  # Get the actual file name
+    # subfolder_name = path_parts[-2]  # Extract the subfolder (e.g., 'search')
+
+    # # Generate the executable name dynamically based on file structure
+    # executable_name = f"{subfolder_name}_{os.path.splitext(file_name)[0]}"  # Combine subfolder and file name
+
+    # # Generate the full executable name
+    # executable_full_name = f"{chapter_name.lower()}_{executable_name}"
+
+    # # Construct the path to the executable
+    # executable_full_path = os.path.join(build_dir, chapter_name, executable_full_name)
 
     # Check if the executable exists
     if not os.path.exists(executable_full_path):

@@ -6,7 +6,7 @@
 
 int main ()
 {
-    // testExtendedBottomUpCutRodWithCost();
+    testExtendedBottomUpCutRodWithCost();
     // testExtendedMemoizedCutRod();
     // testFibonacciValue();
     // testFibonacciValueRecurrence();

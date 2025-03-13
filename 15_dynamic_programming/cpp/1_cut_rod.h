@@ -33,7 +33,7 @@ int cutRod ( Elements const & _p, int _n )
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 
-// Top-down with memoization
+// Top-down with memoization, Dynamic programming
 
 int memoizedCutRodAux ( Elements const & _p, int _n, Elements & _r )
 {
