@@ -2,7 +2,7 @@
 #include <queue>
 #include <vector>
 
-#include "../../common/timer.h"
+#include "../common/timer.h"
 
 using namespace std;
 
@@ -82,7 +82,7 @@ int main() {
     int bfsCount = 0;
     {
         Timer<std::milli> timer1("BFS");
-        // bfsCount = countPathsBFS(m, n);
+        bfsCount = countPathsBFS(m, n);
     }
 
     int dpCount = 0;

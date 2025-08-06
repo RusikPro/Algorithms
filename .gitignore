@@ -1,7 +1,31 @@
 build/*
 .vscode/
 
+# Compiled executables
 *.out
-private/
+a.out
 
+# Private and temporary files
+private/
+*.tmp
+*.temp
+*.log
+
+# Debug files
 *.dSYM/
+
+# Object files
+*.o
+*.obj
+
+# CMake build artifacts
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# OS files
+.DS_Store
+
+# Backup files
+*.bak
+*.backup
